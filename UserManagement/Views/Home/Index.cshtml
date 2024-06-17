@@ -1,0 +1,31 @@
+﻿@model IEnumerable<UserManagement.Models.User>
+
+@{
+    ViewBag.Title = "User Management";
+}
+
+<h2>User Management</h2>
+
+<p>Welcome, @ViewBag.Username</p>
+<p>@Html.ActionLink("Logout", "Logout", "Account")</p>
+
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Username</td>
+            <td>@user.Email</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { username = user.Username }) |
+                @Html.ActionLink("Delete", "Delete", new { username = user.Username })
+            </td>
+        </tr>
+    }
+</table>
+
+<p>@Html.ActionLink("Add New User", "Add")</p>
