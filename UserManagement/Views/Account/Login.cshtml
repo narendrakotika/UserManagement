@@ -1,4 +1,32 @@
-﻿@{
+﻿@*@{
+        ViewBag.Title = "Login";
+    }
+
+    <h2>Login</h2>
+
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <p style="color: red;">@ViewBag.Message</p>
+    }
+
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.Label("Username")
+            @Html.TextBox("username")
+        </div>
+        <div>
+            @Html.Label("Password")
+            @Html.Password("password")
+        </div>
+        <div>
+            <input type="submit" value="Login" />
+        </div>
+    }*@
+
+
+
+@{
     ViewBag.Title = "Login";
 }
 
@@ -6,22 +34,31 @@
 
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
-    <p style="color: red;">@ViewBag.Message</p>
+    @*<p style="color: red;">@ViewBag.Message</p>*@
+    <p class="text-danger">@ViewBag.Message</p>
+
 }
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     <div>
         @Html.Label("Username")
         @Html.TextBox("username")
+        @Html.ValidationMessage("username", "", new { @class = "text-danger" })
     </div>
     <div>
         @Html.Label("Password")
         @Html.Password("password")
+        @Html.ValidationMessage("password", "", new { @class = "text-danger" })
     </div>
     <div>
         <input type="submit" value="Login" />
     </div>
 }
 
+@section scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}
 

@@ -52,3 +52,10 @@ input[type="submit"] {
     input[type="submit"]:hover {
         background-color: #45a049;
     }
+.field-validation-error {
+    color: red;
+}
+
+.validation-summary-errors {
+    color: red;
+}
